@@ -1,0 +1,26 @@
+﻿@model IQueryable<Student>
+
+
+@{
+    string strTitle = "Главная панели администратора";
+    ViewBag.Title = strTitle;
+}
+
+<h2>@strTitle</h2>
+<div>
+    <h3>Наши ученики</h3>
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            @foreach (var p in Model)
+            {
+                <div>
+                    @p.FullName
+                    @p.Burthday
+                    @p.Groups
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+﻿@model IQueryable<Student>
+@{
+    string strTitle = "Панель администратора";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <h3>Наши ученики</h3>
+
+        @foreach (var p in Model)
+        {
+    <div>
+        @p.FullName
+        @p.Burthday
+        @p.Groups
+    </div>
+        }
+        @if (Model.Any())
+        {
+            <div>
+                @foreach (Student entity in Model)
+                {
+                    <div>
+                        <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
+                        |
+                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="StudentsEdit" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id">
+                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
+                        </form>
+                        |
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="div-box">
+            <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="">Добавить ученика</a>
+        </div>
+    </div>
+</div>

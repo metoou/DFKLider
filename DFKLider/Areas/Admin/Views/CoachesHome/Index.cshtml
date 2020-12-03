@@ -1,0 +1,40 @@
+﻿@model IQueryable<Coach>
+@{
+    string strTitle = "Список тренеров";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <h3>Наши тренера</h3>
+
+        @foreach (var p in Model)
+        {
+            <div>
+                @p.FullName
+
+            </div>
+        }
+        @if (Model.Any())
+        {
+            <div>
+                @foreach (Coach entity in Model)
+                {
+                    <div>
+                        <a asp-area="Admin" asp-controller="CoachesEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
+                        |
+                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="CoachesEdit" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id">
+                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
+                        </form>
+                        |
+                    </div>
+                }
+            </div>
+        }
+        <div class="div-box">
+            <a asp-area="Admin" asp-controller="CoachesEdit" asp-action="Edit" asp-route-id="">Добавить тренера</a>
+        </div>
+    </div>
+</div>
