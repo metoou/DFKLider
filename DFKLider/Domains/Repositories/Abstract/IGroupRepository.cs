@@ -10,6 +10,7 @@ namespace DFKLider.Domains.Repositories.Abstract
     {
         IQueryable<Group> GetGroups();
         Group GetGroupById(Guid id);
+        ICollection<Group> GetGroupsList();
         void SaveGroup(Group entity);
         void DeleteGroup(Guid id);
     }

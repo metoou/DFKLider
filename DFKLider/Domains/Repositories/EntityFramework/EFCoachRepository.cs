@@ -22,11 +22,6 @@ namespace DFKLider.Domains.Repositories.EntityFramework
             return context.Coaches;
         }
 
-        public ICollection<Coach> GetCoachesGroups()
-        {
-            return context.Coaches.Include(c => c.Groups).ToList();
-        }
-
         public Coach GetCoachById(Guid id)
         {
             return context.Coaches.FirstOrDefault(x => x.Id == id);

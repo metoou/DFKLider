@@ -19,6 +19,10 @@ namespace DFKLider.Domains.Repositories.EntityFramework
         {
             return context.Groups;
         }
+        public ICollection<Group> GetGroupsList()
+        {
+            return context.Groups.Include(c => c.Coach).ToList();
+        }
         public Group GetGroupById(Guid id)
         {
             return context.Groups.FirstOrDefault(x => x.Id == id);

@@ -4,6 +4,7 @@ using DFKLider.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +25,23 @@ namespace DFKLider.Areas.Admin.Controllers
         public IActionResult Edit(Guid id)
         {  
             var entity = id == default ? new Coach() : dataManager.Coaches.GetCoachById(id);
-            ICollection<Coach> groups = dataManager.Coaches.GetCoachesGroups();
+            ICollection<Group> groups = dataManager.Groups.GetGroupsList().ToList();         
             ViewBag.Groups = groups;
+
+
             return View(entity);
         }
 
-        public IActionResult Groups(Guid id)
-        {
-            ICollection<Coach> groups = dataManager.Coaches.GetCoachesGroups();
-            return View(groups);
-        }
+        //public void GroupsList()
+        //{
+        //    ICollection<Group> groups = dataManager.Groups.GetGroups().ToList();
+        //    ViewBag.Groups = groups;
+        //}
 
         [HttpPost]
         public IActionResult Edit(Coach model, IFormFile titleImageFile)
         {
+            
             if (ModelState.IsValid)
             {
                 //TODO add image to Model

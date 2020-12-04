@@ -26,15 +26,22 @@
                 <textarea asp-for="MiddleName"></textarea>
                 <span asp-validation-for="MiddleName"></span>
             </div>
-            <div>
-                <select asp-for="Groups" asp-items="@(new SelectList(@ViewBag.Groups, "Id"))">
-                </select>
-            </div>
+
             <input type="submit" value="Сохранить" />
         </form>
-        
-            
-            @*@Html.DisplayNameFor(model => model.Groups.)*@
-        
+        <form asp-area="Admin" asp-controller="CoachesEdit" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div>
+                <select asp-for="Groups">
+                    @for (int i = 0; i < @ViewBag.Groups.Count; i++)
+                    {
+                        <option value="@i" selected>@ViewBag.Groups[i].GroupNumber</option>
+                    }
+                </select>
+
+            </div>
+        </form>       
+
+        @*@Html.DisplayNameFor(model => model.Groups.)*@
+
     </div>
 </div>

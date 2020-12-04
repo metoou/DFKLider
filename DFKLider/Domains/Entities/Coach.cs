@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace DFKLider.Domains.Entities
         public string Phone { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
 
-        
+
+
     }
 }
