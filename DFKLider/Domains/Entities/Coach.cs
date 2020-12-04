@@ -19,9 +19,8 @@ namespace DFKLider.Domains.Entities
 
         [Display(Name = "Контактный телефон тренера")]
         public string Phone { get; set; }
-        public Guid? GroupId { get; set; }
-        public Group Groups { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
 
-
+        
     }
 }

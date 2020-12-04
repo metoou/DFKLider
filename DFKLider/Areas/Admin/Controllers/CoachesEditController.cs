@@ -24,7 +24,15 @@ namespace DFKLider.Areas.Admin.Controllers
         public IActionResult Edit(Guid id)
         {  
             var entity = id == default ? new Coach() : dataManager.Coaches.GetCoachById(id);
+            ICollection<Coach> groups = dataManager.Coaches.GetCoachesGroups();
+            ViewBag.Groups = groups;
             return View(entity);
+        }
+
+        public IActionResult Groups(Guid id)
+        {
+            ICollection<Coach> groups = dataManager.Coaches.GetCoachesGroups();
+            return View(groups);
         }
 
         [HttpPost]
@@ -42,9 +50,10 @@ namespace DFKLider.Areas.Admin.Controllers
                 //        titleImageFile.CopyTo(stream);
                 //    }
                 //}
-                dataManager.Coaches.SaveCoach(model);
+                dataManager.Coaches.SaveCoach(model); 
                 return RedirectToAction(nameof(CoachesHomeController.Index), nameof(CoachesHomeController).CutController());
             }
+            
             return View(model);
         }
 

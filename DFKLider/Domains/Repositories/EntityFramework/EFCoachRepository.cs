@@ -2,6 +2,7 @@
 using DFKLider.Domains.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace DFKLider.Domains.Repositories.EntityFramework
         public IQueryable<Coach> GetCoaches()
         {
             return context.Coaches;
+        }
+
+        public ICollection<Coach> GetCoachesGroups()
+        {
+            return context.Coaches.Include(c => c.Groups).ToList();
         }
 
         public Coach GetCoachById(Guid id)

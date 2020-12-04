@@ -27,9 +27,14 @@
                 <span asp-validation-for="MiddleName"></span>
             </div>
             <div>
-               
+                <select asp-for="Groups" asp-items="@(new SelectList(@ViewBag.Groups, "Id"))">
+                </select>
             </div>
             <input type="submit" value="Сохранить" />
         </form>
+        
+            
+            @*@Html.DisplayNameFor(model => model.Groups.)*@
+        
     </div>
 </div>

@@ -15,6 +15,7 @@ namespace DFKLider.Domains.Entities
         [Display(Name = "Номер группы")]
         public string GroupNumber { get; set; }
         public IList<Student> Students { get; set; }
-        public IList<Coach> Coaches { get; set; }
+        public Guid? CoachId { get; set; }
+        public virtual Coach Coach { get; set; }
     }
 }
