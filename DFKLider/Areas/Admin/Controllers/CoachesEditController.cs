@@ -23,20 +23,28 @@ namespace DFKLider.Areas.Admin.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
         public IActionResult Edit(Guid id)
-        {  
+        {
+            
             var entity = id == default ? new Coach() : dataManager.Coaches.GetCoachById(id);
-            ICollection<Group> groups = dataManager.Groups.GetGroupsList().ToList();         
+            
+            //передаем список всех существующих групп
+            ICollection<Group> groups = dataManager.Groups.GetGroupsList().ToList();
             ViewBag.Groups = groups;
 
-
+            // получаем id coach из select
+            //Guid coachesId = id;
+            //if (coachesId != default)
+            //{
+            //    dataManager.Coaches.SaveCoach(dataManager.Coaches.GetCoachById(coachesId));
+            //}           
             return View(entity);
         }
 
-        //public void GroupsList()
-        //{
-        //    ICollection<Group> groups = dataManager.Groups.GetGroups().ToList();
-        //    ViewBag.Groups = groups;
-        //}
+        public IActionResult SaveGroups(Guid id, Guid idCoach)
+        {
+            dataManager.Coaches.ChangeGroups(id, idCoach);
+            return RedirectToAction(nameof(CoachesHomeController.Index), nameof(CoachesHomeController).CutController());
+        }
 
         [HttpPost]
         public IActionResult Edit(Coach model, IFormFile titleImageFile)
@@ -54,12 +62,20 @@ namespace DFKLider.Areas.Admin.Controllers
                 //        titleImageFile.CopyTo(stream);
                 //    }
                 //}
-                dataManager.Coaches.SaveCoach(model); 
+               
+                dataManager.Coaches.SaveCoach(model);
                 return RedirectToAction(nameof(CoachesHomeController.Index), nameof(CoachesHomeController).CutController());
-            }
-            
+            }           
             return View(model);
         }
+
+        //[HttpPost]
+        //public IActionResult SaveGroups(Guid id)
+        //{
+        //    dataManager.Coaches.GetCoachById(id);
+        //    dataManager.Groups.SaveGroup(dataManager.Groups.GetGroupById(id));
+        //    return RedirectToAction(nameof(CoachesHomeController.Index), nameof(CoachesHomeController).CutController());
+        //}
 
         [HttpPost]
         public IActionResult Delete(Guid id)

@@ -12,6 +12,7 @@ namespace DFKLider.Domains.Repositories.Abstract
         IQueryable<Coach> GetCoaches();
         Coach GetCoachById(Guid id);
 
+        void ChangeGroups(Guid id, Guid coachId);
         void SaveCoach(Coach entity);
         void DeleteCoach(Guid id);
     }

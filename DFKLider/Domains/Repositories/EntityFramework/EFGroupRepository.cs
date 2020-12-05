@@ -26,13 +26,18 @@ namespace DFKLider.Domains.Repositories.EntityFramework
         public Group GetGroupById(Guid id)
         {
             return context.Groups.FirstOrDefault(x => x.Id == id);
-        }
+        }       
         public void SaveGroup(Group entity)
         {
             if (entity.Id == default)
                 context.Entry(entity).State = EntityState.Added;
             else
+            {
+                entity.Coach = context.Coaches.Where(c => c.Id == entity.CoachId).FirstOrDefault();
+                entity = context.Groups.Where(c => c.Id == entity.Id).FirstOrDefault();
+                entity.CoachId = entity.Coach.Id;          
                 context.Entry(entity).State = EntityState.Modified;
+            }                           
             context.SaveChanges();
         }
         public void DeleteGroup(Guid id)
