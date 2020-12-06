@@ -8,28 +8,21 @@
     <h2>@strTitle</h2>
     <div>
         <h3>Наши родители</h3>
-
-        @foreach (var p in Model)
-        {
-            <div>
-                @p.FullName
-
-            </div>
-        }
         @if (Model.Any())
         {
             <div>
                 @foreach (Parent entity in Model)
                 {
-                    <div>
-                        <a asp-area="Admin" asp-controller="ParentsEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
-                        |
-                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="ParentsEdit" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@entity.Id">
-                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
-                        </form>
-                        |
-                    </div>
+                <div>
+                    @entity.FullName
+                    <a asp-area="Admin" asp-controller="ParentsEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
+                    |
+                    <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="ParentsEdit" asp-action="Delete" method="post">
+                        <input type="hidden" name="id" value="@entity.Id">
+                        <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
+                    </form>
+                    |
+                </div>
                 }
             </div>
         }

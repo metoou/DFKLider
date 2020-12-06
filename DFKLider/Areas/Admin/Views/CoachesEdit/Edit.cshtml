@@ -26,44 +26,22 @@
                 <textarea asp-for="MiddleName"></textarea>
                 <span asp-validation-for="MiddleName"></span>
             </div>
-
-            @*<div>
+            <input type="submit" value="Сохранить" />
+        </form>
+        
+    </div>
+   
+    <form asp-area="Admin" asp-controller="CoachesEdit" asp-action="SaveGroups" method="post" enctype="multipart/form-data">
+            <div>
                 <label for="id">Выберите модель:</label>
-                <select name="model">
-                    @for (int i = 0; i < @ViewBag.Groups.Count; i++)
-                    {
-        <option value="@ViewBag.Groups[i].Id" selected>@ViewBag.Groups[i].GroupNumber</option>
-}
-                </select>
-                <label>@ViewBag.Groups[0].Id</label>
-            </div>*@
-
-            @*<div>
-                <label for="id">Выберите модель:</label>
+                <input type="hidden" asp-for="Id" name="idCoach" />
                 <select name="id">
                     @for (int i = 0; i < @ViewBag.Groups.Count; i++)
                     {
-        <option value="@ViewBag.Groups[i].Id" selected>@ViewBag.Groups[i].GroupNumber</option>}
+            <option value="@ViewBag.Groups[i].Id" selected>@ViewBag.Groups[i].GroupNumber</option>}
                 </select>
-                <label>@ViewBag.Groups[0].CoachId</label>
-            </div>*@
-
+            </div>
             <input type="submit" value="Сохранить" />
         </form>
 
-
-    </div>
-    <form asp-area="Admin" asp-controller="CoachesEdit" asp-action="SaveGroups" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="id">Выберите модель:</label>
-            <input type="hidden" asp-for="Id" name="idCoach" />
-            <select name="id">
-                @for (int i = 0; i < @ViewBag.Groups.Count; i++)
-                {
-        <option value="@ViewBag.Groups[i].Id" selected>@ViewBag.Groups[i].GroupNumber</option>}
-            </select>
-            <label>@ViewBag.Groups[0].CoachId</label>
-        </div>
-        <input type="submit" value="Сохранить" />
-    </form>
 </div>
