@@ -29,14 +29,7 @@ namespace DFKLider.Areas.Admin.Controllers
             
             //передаем список всех существующих групп
             ICollection<Group> groups = dataManager.Groups.GetGroupsList().ToList();
-            ViewBag.Groups = groups;
-
-            // получаем id coach из select
-            //Guid coachesId = id;
-            //if (coachesId != default)
-            //{
-            //    dataManager.Coaches.SaveCoach(dataManager.Coaches.GetCoachById(coachesId));
-            //}           
+            ViewBag.Groups = groups;          
             return View(entity);
         }
 

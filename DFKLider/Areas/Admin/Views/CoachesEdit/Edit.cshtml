@@ -9,7 +9,6 @@
     <div>
         <form asp-area="Admin" asp-controller="CoachesEdit" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
-
             <div asp-validation-summary="All"></div>
             <div class="div-box">
                 <label asp-for="Name"></label>
@@ -27,8 +26,7 @@
                 <span asp-validation-for="MiddleName"></span>
             </div>
             <input type="submit" value="Сохранить" />
-        </form>
-        
+        </form>        
     </div>
    
     <form asp-area="Admin" asp-controller="CoachesEdit" asp-action="SaveGroups" method="post" enctype="multipart/form-data">
