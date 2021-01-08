@@ -12,6 +12,7 @@ namespace DFKLider.Domains.Entities
         [Required]
         public Guid Id { get; set; }
 
+        //TODO изменить тип данных на date
         [Display(Name = "Дата рождения тренера")]
         public DateTime Burthday { get; set; }
 
@@ -21,8 +22,6 @@ namespace DFKLider.Domains.Entities
         [Display(Name = "Контактный телефон тренера")]
         public string Phone { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
-
-
 
     }
 }
