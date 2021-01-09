@@ -1,91 +1,53 @@
 ﻿@model IQueryable<Student>
+
 @{ string strTitle = "Панель администратора";
     ViewBag.Title = strTitle; }
 
-<div>
-    <h2>@strTitle</h2>
-    <div>
-        <h3>Наши ученики</h3>
-        @*@if (Model.Any())
-                {
-        <div>
-            @foreach (Student entity in Model)
-            {
-        <div>
-            @entity.FullName
-            <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
-            |
-            <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="StudentsEdit" asp-action="Delete" method="post">
-                <input type="hidden" name="id" value="@entity.Id">
-                <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
-            </form>
-            |
-        </div>          }
-        </div>}
-
-                <div class="div-box">
-                    <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="">Добавить ученика</a>
-                </div>*@
-    </div>
+<div class="div-box">
+    <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="">Добавить</a>
 </div>
 
-<div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        Список учеников
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<div class="mt-4 col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Имя</th>
-                        <th>Фамиллия</th>
-                        <th>Отчество</th>
-                        <th>Редактировать</th>
-                        <th>Удалить</th>
+                        <th> ФИО </th>
+                        <th> Номер группы </th>
+                        <th> Локация </th>
+                        <th> Действия </th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Имя</th>
-                        <th>Фамиллия</th>
-                        <th>Отчество</th>
-                        <th>Редактировать</th>
-                        <th>Удалить</th>
-                    </tr>
-                </tfoot>
                 <tbody>
+
                     @if (Model.Any())
                     {
-                        @foreach (Student entity in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @entity.Name                                                                     
-                                </td>
-                                <td>
-                                    @entity.SurName
-                                </td>
-                                <td>
-                                    @entity.MiddleName
-                                </td>
-                                <td>
-                                    <a asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
-                                </td>
-                                <td>
-                                    <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="StudentsEdit" asp-action="Delete" method="post">
-                                        <input type="hidden" name="id" value="@entity.Id">
-                                        <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
-                                    </form>
-                                </td>
-                            </tr>
-                         }
+                         @foreach (Student entity in Model)
+                             {
 
-                        }
+                                <tr>
+                                    <td>
+                                        @entity.FullName
+                                    </td>
+                                    <td>
+                                        @entity.GroupId
+                                    </td>
+                                     <td>
+                                        @entity.TrainingLocation
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-just-icon btn-sm" asp-area="Admin" asp-controller="StudentsEdit" asp-action="Edit" asp-route-id="@entity.Id"><i class="fas fa-user-edit"></i></a>
+                                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="StudentsEdit" asp-action="Delete" method="post">
+                                            <input type="hidden" name="id" value="@entity.Id">
+                                            <a href="#" class="btn btn-danger btn-just-icon btn-sm" onclick="document.getElementById('form-@entity.Id').submit();"><i class="fas fa-user-circle"></i></a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                    }
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>

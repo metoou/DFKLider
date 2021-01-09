@@ -4,20 +4,56 @@
 @{ string strTitle = "Главная панели администратора";
                 ViewBag.Title = strTitle; }
 
-<h2>@strTitle</h2>
-<h1 class="mt-4">Главная</h1>
-<h3>Наши ученики</h3>
-<div class="card mb-4">
-    <div class="card-body">
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-            @foreach (var p in Model)
-            {
-            <div>
-                @p.FullName
-                @p.Burthday
-                @p.Groups
-            </div>      }
-        </form>
+<div class="mt-4 col-md-12">
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mb-0">Total Revenue</h4>
+                        <p class="font-weight-semibold mb-0">+1.37%</p>
+                    </div>
+                    <h3 class="font-weight-medium mb-4">184.42K</h3>
+                </div>
+                <canvas class="mt-n4" height="90" id="total-revenue"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mb-0">Transaction</h4>
+                        <p class="font-weight-semibold mb-0">-2.87%</p>
+                    </div>
+                    <h3 class="font-weight-medium">147.7K</h3>
+                </div>
+                <canvas class="mt-n3" height="90" id="total-transaction"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mb-0">Transaction</h4>
+                        <p class="font-weight-semibold mb-0">-2.87%</p>
+                    </div>
+                    <h3 class="font-weight-medium">147.7K</h3>
+                </div>
+                <canvas class="mt-n3" height="90" id="total-transaction"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mb-0">Transaction</h4>
+                        <p class="font-weight-semibold mb-0">-2.87%</p>
+                    </div>
+                    <h3 class="font-weight-medium">147.7K</h3>
+                </div>
+                <canvas class="mt-n3" height="90" id="total-transaction"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
